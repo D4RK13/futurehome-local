@@ -1,0 +1,32 @@
+{
+  "id": "com.github.d4rk13.futurehomelocal",
+  "version": "0.1.0",
+  "compatibility": ">=12.4.0",
+  "sdk": 3,
+  "runtime": "nodejs",
+  "platforms": [
+    "local"
+  ],
+  "name": {
+    "en": "Futurehome Local",
+    "no": "Futurehome Lokal"
+  },
+  "description": {
+    "en": "Futurehome thermostats and the HAN Sensor directly on Homey's Zigbee, without a Futurehome hub, cloud or subscription",
+    "no": "Futurehome-termostater og HAN-sensoren rett på Homeys Zigbee, uten Futurehome-hub, sky eller abonnement"
+  },
+  "category": [
+    "climate"
+  ],
+  "permissions": [],
+  "brandColor": "#1F4E5F",
+  "images": {
+    "small": "/assets/images/small.png",
+    "large": "/assets/images/large.png",
+    "xlarge": "/assets/images/xlarge.png"
+  },
+  "author": {
+    "name": "Sondre"
+  },
+  "source": "https://github.com/D4RK13/futurehome-local"
+}

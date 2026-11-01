@@ -1,0 +1,10 @@
+{
+  "type": "boolean",
+  "title": { "en": "Heating", "no": "Varmer" },
+  "getable": true,
+  "setable": false,
+  "uiComponent": "sensor",
+  "insights": true,
+  "insightsTitleTrue": { "en": "Heating on", "no": "Varme på" },
+  "insightsTitleFalse": { "en": "Heating off", "no": "Varme av" }
+}

@@ -1,0 +1,24 @@
+{
+  "unknown": "Ukjent",
+  "errors": {
+    "write_not_approved": "Styring fra Homey er ikke slått på ennå. Appen leser bare fra denne enheten foreløpig.",
+    "no_tuya_cluster": "Termostaten har ikke Tuya-klyngen. Fjern den fra Homey og legg den til på nytt.",
+    "no_han_endpoint": "Fant ikke måleverdiene til HAN-sensoren (endepunkt 2).",
+    "han_no_answer": "HAN-sensoren svarer ikke."
+  },
+  "thermostat": {
+    "sensor_type": {
+      "room": "Romføler",
+      "floor": "Gulvføler",
+      "max_guard": "Maksvern (romføler med gulvgrense)"
+    }
+  },
+  "han": {
+    "meter_type": {
+      "norwegian_han": "Norsk HAN",
+      "norwegian_han_extra_load": "Norsk HAN, ekstra last",
+      "aidon": "Aidon",
+      "kaifa_kamstrup": "Kaifa og Kamstrup"
+    }
+  }
+}

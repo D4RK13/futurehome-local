@@ -1,0 +1,174 @@
+{
+  "triggers": [
+    {
+      "id": "thermostat_mode_changed",
+      "title": {
+        "en": "The thermostat mode changed to",
+        "no": "Termostatmodusen endret seg til"
+      },
+      "titleFormatted": {
+        "en": "The thermostat mode changed to [[mode]]",
+        "no": "Termostatmodusen endret seg til [[mode]]"
+      },
+      "args": [
+        {
+          "type": "dropdown",
+          "name": "mode",
+          "title": { "en": "Thermostat mode", "no": "Termostatmodus" },
+          "values": [
+            { "id": "heat", "title": { "en": "Heat", "no": "Varme" } },
+            { "id": "home", "title": { "en": "Home", "no": "Hjemme" } },
+            { "id": "away", "title": { "en": "Away", "no": "Borte" } },
+            { "id": "auto", "title": { "en": "Auto (week program)", "no": "Auto (ukeprogram)" } }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "heating_started",
+      "title": {
+        "en": "The heating turned on",
+        "no": "Varmen slo seg på"
+      }
+    },
+    {
+      "id": "heating_stopped",
+      "title": {
+        "en": "The heating turned off",
+        "no": "Varmen slo seg av"
+      }
+    },
+    {
+      "id": "child_lock_changed",
+      "title": {
+        "en": "The child lock turned",
+        "no": "Barnesikringen ble slått"
+      },
+      "titleFormatted": {
+        "en": "The child lock turned [[state]]",
+        "no": "Barnesikringen ble slått [[state]]"
+      },
+      "args": [
+        {
+          "type": "dropdown",
+          "name": "state",
+          "title": { "en": "Child lock", "no": "Barnesikring" },
+          "values": [
+            { "id": "on", "title": { "en": "on", "no": "på" } },
+            { "id": "off", "title": { "en": "off", "no": "av" } }
+          ]
+        }
+      ]
+    }
+  ],
+  "conditions": [
+    {
+      "id": "thermostat_mode_is",
+      "title": {
+        "en": "The thermostat mode !{{is|is not}}",
+        "no": "Termostatmodusen !{{er|er ikke}}"
+      },
+      "titleFormatted": {
+        "en": "The thermostat mode !{{is|is not}} [[mode]]",
+        "no": "Termostatmodusen !{{er|er ikke}} [[mode]]"
+      },
+      "args": [
+        {
+          "type": "dropdown",
+          "name": "mode",
+          "title": { "en": "Thermostat mode", "no": "Termostatmodus" },
+          "values": [
+            { "id": "heat", "title": { "en": "Heat", "no": "Varme" } },
+            { "id": "home", "title": { "en": "Home", "no": "Hjemme" } },
+            { "id": "away", "title": { "en": "Away", "no": "Borte" } },
+            { "id": "auto", "title": { "en": "Auto (week program)", "no": "Auto (ukeprogram)" } }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "is_heating",
+      "title": {
+        "en": "The heating !{{is|is not}} on",
+        "no": "Varmen !{{er|er ikke}} på"
+      }
+    },
+    {
+      "id": "child_lock_is_on",
+      "title": {
+        "en": "The child lock !{{is|is not}} on",
+        "no": "Barnesikringen !{{er|er ikke}} på"
+      }
+    }
+  ],
+  "actions": [
+    {
+      "id": "set_thermostat_mode",
+      "title": {
+        "en": "Set the thermostat mode",
+        "no": "Sett termostatmodus"
+      },
+      "titleFormatted": {
+        "en": "Set the thermostat mode to [[mode]]",
+        "no": "Sett termostatmodus til [[mode]]"
+      },
+      "args": [
+        {
+          "type": "dropdown",
+          "name": "mode",
+          "title": { "en": "Thermostat mode", "no": "Termostatmodus" },
+          "values": [
+            { "id": "heat", "title": { "en": "Heat", "no": "Varme" } },
+            { "id": "home", "title": { "en": "Home", "no": "Hjemme" } },
+            { "id": "away", "title": { "en": "Away", "no": "Borte" } },
+            { "id": "auto", "title": { "en": "Auto (week program)", "no": "Auto (ukeprogram)" } }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "set_child_lock",
+      "title": {
+        "en": "Turn the child lock",
+        "no": "Slå barnesikringen"
+      },
+      "titleFormatted": {
+        "en": "Turn the child lock [[state]]",
+        "no": "Slå barnesikringen [[state]]"
+      },
+      "args": [
+        {
+          "type": "dropdown",
+          "name": "state",
+          "title": { "en": "Child lock", "no": "Barnesikring" },
+          "values": [
+            { "id": "on", "title": { "en": "on", "no": "på" } },
+            { "id": "off", "title": { "en": "off", "no": "av" } }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "set_open_window_detection",
+      "title": {
+        "en": "Turn open window detection",
+        "no": "Slå åpent vindu-funksjonen"
+      },
+      "titleFormatted": {
+        "en": "Turn open window detection [[state]]",
+        "no": "Slå åpent vindu-funksjonen [[state]]"
+      },
+      "args": [
+        {
+          "type": "dropdown",
+          "name": "state",
+          "title": { "en": "Open window detection", "no": "Åpent vindu-funksjon" },
+          "values": [
+            { "id": "on", "title": { "en": "on", "no": "på" } },
+            { "id": "off", "title": { "en": "off", "no": "av" } }
+          ]
+        }
+      ]
+    }
+  ]
+}

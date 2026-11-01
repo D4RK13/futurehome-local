@@ -1,0 +1,119 @@
+[
+  {
+    "type": "group",
+    "label": {
+      "en": "Heating",
+      "no": "Oppvarming"
+    },
+    "children": [
+      {
+        "id": "open_window_detection",
+        "type": "checkbox",
+        "label": {
+          "en": "Open window detection",
+          "no": "Åpent vindu-funksjon"
+        },
+        "hint": {
+          "en": "Stops heating when the temperature drops quickly, e.g. when a window is opened.",
+          "no": "Slår av varmen når temperaturen faller raskt, f.eks. når et vindu åpnes."
+        },
+        "value": true
+      },
+      {
+        "id": "hysteresis",
+        "type": "number",
+        "label": {
+          "en": "Hysteresis (°C)",
+          "no": "Hysterese (°C)"
+        },
+        "hint": {
+          "en": "How far the temperature may drift from the target before the heating switches on or off. A higher value gives fewer switches.",
+          "no": "Hvor langt temperaturen kan avvike fra ønsket temperatur før varmen slår seg på eller av. Høyere verdi gir færre koblinger."
+        },
+        "value": 2,
+        "min": 1,
+        "max": 9,
+        "step": 1,
+        "units": {
+          "en": "°C"
+        }
+      }
+    ]
+  },
+  {
+    "type": "group",
+    "label": {
+      "en": "Sensor",
+      "no": "Føler"
+    },
+    "children": [
+      {
+        "id": "temperature_calibration",
+        "type": "number",
+        "label": {
+          "en": "Temperature calibration (°C)",
+          "no": "Temperaturkalibrering (°C)"
+        },
+        "hint": {
+          "en": "Added to the measured temperature. Use it if the thermostat shows too much or too little.",
+          "no": "Legges til den målte temperaturen. Bruk den hvis termostaten viser for mye eller for lite."
+        },
+        "value": 0,
+        "min": -9,
+        "max": 9,
+        "step": 1,
+        "units": {
+          "en": "°C"
+        }
+      },
+      {
+        "id": "sensor_type",
+        "type": "label",
+        "label": {
+          "en": "Sensor type",
+          "no": "Følertype"
+        },
+        "hint": {
+          "en": "Which sensor the thermostat follows. Set it on the thermostat itself (menu setting 1). Read only here, because it decides the floor protection.",
+          "no": "Hvilken føler termostaten styrer etter. Stilles på selve termostaten (menyinnstilling 1). Kan bare leses her, fordi den styrer gulvvernet."
+        },
+        "value": "–"
+      },
+      {
+        "id": "max_guard_temperature",
+        "type": "label",
+        "label": {
+          "en": "Floor limit (°C)",
+          "no": "Gulvgrense (°C)"
+        },
+        "hint": {
+          "en": "The highest floor temperature in max guard mode. Set it on the thermostat itself (menu setting 3). Read only here.",
+          "no": "Høyeste gulvtemperatur i maksvern-modus. Stilles på selve termostaten (menyinnstilling 3). Kan bare leses her."
+        },
+        "value": "–"
+      }
+    ]
+  },
+  {
+    "type": "group",
+    "label": {
+      "en": "Diagnostics",
+      "no": "Diagnostikk"
+    },
+    "children": [
+      {
+        "id": "unknown_datapoints",
+        "type": "label",
+        "label": {
+          "en": "Unknown values",
+          "no": "Ukjente verdier"
+        },
+        "hint": {
+          "en": "Values the thermostat reports that the app does not understand yet, as datapoint: value. Used to add new features.",
+          "no": "Verdier termostaten sender som appen ikke forstår ennå, som datapunkt: verdi. Brukes til å legge til nye funksjoner."
+        },
+        "value": "–"
+      }
+    ]
+  }
+]

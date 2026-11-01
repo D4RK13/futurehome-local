@@ -1,0 +1,803 @@
+{
+  "_comment": "This file is generated. Please edit .homeycompose/app.json instead.",
+  "id": "com.github.d4rk13.futurehomelocal",
+  "version": "0.1.0",
+  "compatibility": ">=12.4.0",
+  "sdk": 3,
+  "runtime": "nodejs",
+  "platforms": [
+    "local"
+  ],
+  "name": {
+    "en": "Futurehome Local",
+    "no": "Futurehome Lokal"
+  },
+  "description": {
+    "en": "Futurehome thermostats and the HAN Sensor directly on Homey's Zigbee, without a Futurehome hub, cloud or subscription",
+    "no": "Futurehome-termostater og HAN-sensoren rett på Homeys Zigbee, uten Futurehome-hub, sky eller abonnement"
+  },
+  "category": [
+    "climate"
+  ],
+  "permissions": [],
+  "brandColor": "#1F4E5F",
+  "images": {
+    "small": "/assets/images/small.png",
+    "large": "/assets/images/large.png",
+    "xlarge": "/assets/images/xlarge.png"
+  },
+  "author": {
+    "name": "Sondre"
+  },
+  "source": "https://github.com/D4RK13/futurehome-local",
+  "drivers": [
+    {
+      "name": {
+        "en": "Futurehome HAN Sensor",
+        "no": "Futurehome HAN Sensor"
+      },
+      "class": "sensor",
+      "capabilities": [
+        "measure_power",
+        "meter_power.imported",
+        "meter_power.exported",
+        "futurehome_reactive_power",
+        "measure_voltage.l1",
+        "measure_voltage.l2",
+        "measure_voltage.l3",
+        "measure_current.l1",
+        "measure_current.l2",
+        "measure_current.l3"
+      ],
+      "capabilitiesOptions": {
+        "meter_power.imported": {
+          "title": {
+            "en": "Imported energy",
+            "no": "Importert energi"
+          }
+        },
+        "meter_power.exported": {
+          "title": {
+            "en": "Exported energy",
+            "no": "Eksportert energi"
+          }
+        },
+        "measure_voltage.l1": {
+          "title": {
+            "en": "Voltage L1",
+            "no": "Spenning L1"
+          }
+        },
+        "measure_voltage.l2": {
+          "title": {
+            "en": "Voltage L2",
+            "no": "Spenning L2"
+          }
+        },
+        "measure_voltage.l3": {
+          "title": {
+            "en": "Voltage L3",
+            "no": "Spenning L3"
+          }
+        },
+        "measure_current.l1": {
+          "title": {
+            "en": "Current L1",
+            "no": "Strøm L1"
+          }
+        },
+        "measure_current.l2": {
+          "title": {
+            "en": "Current L2",
+            "no": "Strøm L2"
+          }
+        },
+        "measure_current.l3": {
+          "title": {
+            "en": "Current L3",
+            "no": "Strøm L3"
+          }
+        }
+      },
+      "energy": {
+        "cumulative": true,
+        "cumulativeImportedCapability": "meter_power.imported",
+        "cumulativeExportedCapability": "meter_power.exported"
+      },
+      "platforms": [
+        "local"
+      ],
+      "connectivity": [
+        "zigbee"
+      ],
+      "images": {
+        "small": "/drivers/futurehome-han-sensor/assets/images/small.png",
+        "large": "/drivers/futurehome-han-sensor/assets/images/large.png",
+        "xlarge": "/drivers/futurehome-han-sensor/assets/images/xlarge.png"
+      },
+      "zigbee": {
+        "manufacturerName": [
+          "frient A/S",
+          "Develco Products A/S"
+        ],
+        "productId": [
+          "EMIZB-132"
+        ],
+        "endpoints": {
+          "2": {
+            "clusters": [
+              1794,
+              2820
+            ],
+            "bindings": []
+          }
+        },
+        "learnmode": {
+          "image": "/drivers/futurehome-han-sensor/assets/learnmode.svg",
+          "instruction": {
+            "en": "1. Plug the HAN Sensor into the meter's HAN port. The light flashes red while it looks for Homey.\n2. No red flashing? Open the lid and hold the small button next to the light for 15 seconds, until it flashes three times quickly.\n3. Wait here while Homey finds the sensor.\n\nThe grid company must have opened the HAN port. Far from Homey? A Zigbee device on mains power in between helps.",
+            "no": "1. Sett HAN-sensoren i HAN-porten på måleren. Lyset blinker rødt mens den leter etter Homey.\n2. Blinker det ikke rødt? Åpne lokket og hold den lille knappen ved lyset inne i 15 sekunder, til den blinker raskt tre ganger.\n3. Vent her mens Homey finner sensoren.\n\nNettselskapet må ha åpnet HAN-porten. Langt fra Homey? En Zigbee-enhet med fast strøm imellom hjelper."
+          }
+        }
+      },
+      "id": "futurehome-han-sensor",
+      "settings": [
+        {
+          "type": "group",
+          "label": {
+            "en": "Meter",
+            "no": "Måler"
+          },
+          "children": [
+            {
+              "id": "meter_type",
+              "type": "label",
+              "label": {
+                "en": "Meter type",
+                "no": "Målertype"
+              },
+              "hint": {
+                "en": "The kind of electricity meter the sensor is set up for. It decides how the current is read. Read only.",
+                "no": "Hvilken type strømmåler sensoren er satt opp for. Den bestemmer hvordan strømmen leses. Kan bare leses."
+              },
+              "value": "–"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": {
+        "en": "Futurehome Smart Thermostat",
+        "no": "Futurehome Smart Termostat"
+      },
+      "class": "thermostat",
+      "capabilities": [
+        "onoff",
+        "target_temperature",
+        "measure_temperature",
+        "measure_temperature.floor",
+        "futurehome_heating",
+        "meter_power",
+        "futurehome_thermostat_mode",
+        "futurehome_child_lock"
+      ],
+      "capabilitiesOptions": {
+        "target_temperature": {
+          "min": 5,
+          "max": 35,
+          "step": 1
+        },
+        "measure_temperature.floor": {
+          "title": {
+            "en": "Floor temperature",
+            "no": "Gulvtemperatur"
+          }
+        }
+      },
+      "platforms": [
+        "local"
+      ],
+      "connectivity": [
+        "zigbee"
+      ],
+      "images": {
+        "small": "/drivers/futurehome-thermostat/assets/images/small.png",
+        "large": "/drivers/futurehome-thermostat/assets/images/large.png",
+        "xlarge": "/drivers/futurehome-thermostat/assets/images/xlarge.png"
+      },
+      "zigbee": {
+        "manufacturerName": [
+          "_TZE200_e5hpkc6d",
+          "_TZE204_e5hpkc6d",
+          "_TZE200_4hbx5cvx"
+        ],
+        "productId": [
+          "TS0601"
+        ],
+        "endpoints": {
+          "1": {
+            "clusters": [
+              0,
+              4,
+              5,
+              61184
+            ],
+            "bindings": []
+          }
+        },
+        "learnmode": {
+          "image": "/drivers/futurehome-thermostat/assets/learnmode.svg",
+          "instruction": {
+            "en": "1. Hold the minus button (−) on the thermostat for 8 seconds.\n2. Let go when the Zigbee icon flashes on the display.\n3. Wait here while Homey finds the thermostat.\n\nWas it set up with another hub before? Reset it first: hold + and − for 5 seconds, press ⋯ until setting 13, choose == and wait 5 seconds.",
+            "no": "1. Hold minusknappen (−) på termostaten inne i 8 sekunder.\n2. Slipp når Zigbee-ikonet blinker i displayet.\n3. Vent her mens Homey finner termostaten.\n\nVar den satt opp med en annen hub før? Tilbakestill den først: hold + og − inne i 5 sekunder, trykk ⋯ til innstilling 13, velg == og vent 5 sekunder."
+          }
+        }
+      },
+      "id": "futurehome-thermostat",
+      "settings": [
+        {
+          "type": "group",
+          "label": {
+            "en": "Heating",
+            "no": "Oppvarming"
+          },
+          "children": [
+            {
+              "id": "open_window_detection",
+              "type": "checkbox",
+              "label": {
+                "en": "Open window detection",
+                "no": "Åpent vindu-funksjon"
+              },
+              "hint": {
+                "en": "Stops heating when the temperature drops quickly, e.g. when a window is opened.",
+                "no": "Slår av varmen når temperaturen faller raskt, f.eks. når et vindu åpnes."
+              },
+              "value": true
+            },
+            {
+              "id": "hysteresis",
+              "type": "number",
+              "label": {
+                "en": "Hysteresis (°C)",
+                "no": "Hysterese (°C)"
+              },
+              "hint": {
+                "en": "How far the temperature may drift from the target before the heating switches on or off. A higher value gives fewer switches.",
+                "no": "Hvor langt temperaturen kan avvike fra ønsket temperatur før varmen slår seg på eller av. Høyere verdi gir færre koblinger."
+              },
+              "value": 2,
+              "min": 1,
+              "max": 9,
+              "step": 1,
+              "units": {
+                "en": "°C"
+              }
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "label": {
+            "en": "Sensor",
+            "no": "Føler"
+          },
+          "children": [
+            {
+              "id": "temperature_calibration",
+              "type": "number",
+              "label": {
+                "en": "Temperature calibration (°C)",
+                "no": "Temperaturkalibrering (°C)"
+              },
+              "hint": {
+                "en": "Added to the measured temperature. Use it if the thermostat shows too much or too little.",
+                "no": "Legges til den målte temperaturen. Bruk den hvis termostaten viser for mye eller for lite."
+              },
+              "value": 0,
+              "min": -9,
+              "max": 9,
+              "step": 1,
+              "units": {
+                "en": "°C"
+              }
+            },
+            {
+              "id": "sensor_type",
+              "type": "label",
+              "label": {
+                "en": "Sensor type",
+                "no": "Følertype"
+              },
+              "hint": {
+                "en": "Which sensor the thermostat follows. Set it on the thermostat itself (menu setting 1). Read only here, because it decides the floor protection.",
+                "no": "Hvilken føler termostaten styrer etter. Stilles på selve termostaten (menyinnstilling 1). Kan bare leses her, fordi den styrer gulvvernet."
+              },
+              "value": "–"
+            },
+            {
+              "id": "max_guard_temperature",
+              "type": "label",
+              "label": {
+                "en": "Floor limit (°C)",
+                "no": "Gulvgrense (°C)"
+              },
+              "hint": {
+                "en": "The highest floor temperature in max guard mode. Set it on the thermostat itself (menu setting 3). Read only here.",
+                "no": "Høyeste gulvtemperatur i maksvern-modus. Stilles på selve termostaten (menyinnstilling 3). Kan bare leses her."
+              },
+              "value": "–"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "label": {
+            "en": "Diagnostics",
+            "no": "Diagnostikk"
+          },
+          "children": [
+            {
+              "id": "unknown_datapoints",
+              "type": "label",
+              "label": {
+                "en": "Unknown values",
+                "no": "Ukjente verdier"
+              },
+              "hint": {
+                "en": "Values the thermostat reports that the app does not understand yet, as datapoint: value. Used to add new features.",
+                "no": "Verdier termostaten sender som appen ikke forstår ennå, som datapunkt: verdi. Brukes til å legge til nye funksjoner."
+              },
+              "value": "–"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "flow": {
+    "triggers": [
+      {
+        "id": "thermostat_mode_changed",
+        "title": {
+          "en": "The thermostat mode changed to",
+          "no": "Termostatmodusen endret seg til"
+        },
+        "titleFormatted": {
+          "en": "The thermostat mode changed to [[mode]]",
+          "no": "Termostatmodusen endret seg til [[mode]]"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=futurehome-thermostat"
+          },
+          {
+            "type": "dropdown",
+            "name": "mode",
+            "title": {
+              "en": "Thermostat mode",
+              "no": "Termostatmodus"
+            },
+            "values": [
+              {
+                "id": "heat",
+                "title": {
+                  "en": "Heat",
+                  "no": "Varme"
+                }
+              },
+              {
+                "id": "home",
+                "title": {
+                  "en": "Home",
+                  "no": "Hjemme"
+                }
+              },
+              {
+                "id": "away",
+                "title": {
+                  "en": "Away",
+                  "no": "Borte"
+                }
+              },
+              {
+                "id": "auto",
+                "title": {
+                  "en": "Auto (week program)",
+                  "no": "Auto (ukeprogram)"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "heating_started",
+        "title": {
+          "en": "The heating turned on",
+          "no": "Varmen slo seg på"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=futurehome-thermostat"
+          }
+        ]
+      },
+      {
+        "id": "heating_stopped",
+        "title": {
+          "en": "The heating turned off",
+          "no": "Varmen slo seg av"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=futurehome-thermostat"
+          }
+        ]
+      },
+      {
+        "id": "child_lock_changed",
+        "title": {
+          "en": "The child lock turned",
+          "no": "Barnesikringen ble slått"
+        },
+        "titleFormatted": {
+          "en": "The child lock turned [[state]]",
+          "no": "Barnesikringen ble slått [[state]]"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=futurehome-thermostat"
+          },
+          {
+            "type": "dropdown",
+            "name": "state",
+            "title": {
+              "en": "Child lock",
+              "no": "Barnesikring"
+            },
+            "values": [
+              {
+                "id": "on",
+                "title": {
+                  "en": "on",
+                  "no": "på"
+                }
+              },
+              {
+                "id": "off",
+                "title": {
+                  "en": "off",
+                  "no": "av"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "conditions": [
+      {
+        "id": "thermostat_mode_is",
+        "title": {
+          "en": "The thermostat mode !{{is|is not}}",
+          "no": "Termostatmodusen !{{er|er ikke}}"
+        },
+        "titleFormatted": {
+          "en": "The thermostat mode !{{is|is not}} [[mode]]",
+          "no": "Termostatmodusen !{{er|er ikke}} [[mode]]"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=futurehome-thermostat"
+          },
+          {
+            "type": "dropdown",
+            "name": "mode",
+            "title": {
+              "en": "Thermostat mode",
+              "no": "Termostatmodus"
+            },
+            "values": [
+              {
+                "id": "heat",
+                "title": {
+                  "en": "Heat",
+                  "no": "Varme"
+                }
+              },
+              {
+                "id": "home",
+                "title": {
+                  "en": "Home",
+                  "no": "Hjemme"
+                }
+              },
+              {
+                "id": "away",
+                "title": {
+                  "en": "Away",
+                  "no": "Borte"
+                }
+              },
+              {
+                "id": "auto",
+                "title": {
+                  "en": "Auto (week program)",
+                  "no": "Auto (ukeprogram)"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "is_heating",
+        "title": {
+          "en": "The heating !{{is|is not}} on",
+          "no": "Varmen !{{er|er ikke}} på"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=futurehome-thermostat"
+          }
+        ]
+      },
+      {
+        "id": "child_lock_is_on",
+        "title": {
+          "en": "The child lock !{{is|is not}} on",
+          "no": "Barnesikringen !{{er|er ikke}} på"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=futurehome-thermostat"
+          }
+        ]
+      }
+    ],
+    "actions": [
+      {
+        "id": "set_thermostat_mode",
+        "title": {
+          "en": "Set the thermostat mode",
+          "no": "Sett termostatmodus"
+        },
+        "titleFormatted": {
+          "en": "Set the thermostat mode to [[mode]]",
+          "no": "Sett termostatmodus til [[mode]]"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=futurehome-thermostat"
+          },
+          {
+            "type": "dropdown",
+            "name": "mode",
+            "title": {
+              "en": "Thermostat mode",
+              "no": "Termostatmodus"
+            },
+            "values": [
+              {
+                "id": "heat",
+                "title": {
+                  "en": "Heat",
+                  "no": "Varme"
+                }
+              },
+              {
+                "id": "home",
+                "title": {
+                  "en": "Home",
+                  "no": "Hjemme"
+                }
+              },
+              {
+                "id": "away",
+                "title": {
+                  "en": "Away",
+                  "no": "Borte"
+                }
+              },
+              {
+                "id": "auto",
+                "title": {
+                  "en": "Auto (week program)",
+                  "no": "Auto (ukeprogram)"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "set_child_lock",
+        "title": {
+          "en": "Turn the child lock",
+          "no": "Slå barnesikringen"
+        },
+        "titleFormatted": {
+          "en": "Turn the child lock [[state]]",
+          "no": "Slå barnesikringen [[state]]"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=futurehome-thermostat"
+          },
+          {
+            "type": "dropdown",
+            "name": "state",
+            "title": {
+              "en": "Child lock",
+              "no": "Barnesikring"
+            },
+            "values": [
+              {
+                "id": "on",
+                "title": {
+                  "en": "on",
+                  "no": "på"
+                }
+              },
+              {
+                "id": "off",
+                "title": {
+                  "en": "off",
+                  "no": "av"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "set_open_window_detection",
+        "title": {
+          "en": "Turn open window detection",
+          "no": "Slå åpent vindu-funksjonen"
+        },
+        "titleFormatted": {
+          "en": "Turn open window detection [[state]]",
+          "no": "Slå åpent vindu-funksjonen [[state]]"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=futurehome-thermostat"
+          },
+          {
+            "type": "dropdown",
+            "name": "state",
+            "title": {
+              "en": "Open window detection",
+              "no": "Åpent vindu-funksjon"
+            },
+            "values": [
+              {
+                "id": "on",
+                "title": {
+                  "en": "on",
+                  "no": "på"
+                }
+              },
+              {
+                "id": "off",
+                "title": {
+                  "en": "off",
+                  "no": "av"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "capabilities": {
+    "futurehome_child_lock": {
+      "type": "boolean",
+      "title": {
+        "en": "Child lock",
+        "no": "Barnesikring"
+      },
+      "getable": true,
+      "setable": true,
+      "uiComponent": "toggle"
+    },
+    "futurehome_heating": {
+      "type": "boolean",
+      "title": {
+        "en": "Heating",
+        "no": "Varmer"
+      },
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "insights": true,
+      "insightsTitleTrue": {
+        "en": "Heating on",
+        "no": "Varme på"
+      },
+      "insightsTitleFalse": {
+        "en": "Heating off",
+        "no": "Varme av"
+      }
+    },
+    "futurehome_reactive_power": {
+      "type": "number",
+      "title": {
+        "en": "Reactive power",
+        "no": "Reaktiv effekt"
+      },
+      "units": {
+        "en": "VAr"
+      },
+      "decimals": 0,
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "insights": true
+    },
+    "futurehome_thermostat_mode": {
+      "type": "enum",
+      "title": {
+        "en": "Thermostat mode",
+        "no": "Termostatmodus"
+      },
+      "getable": true,
+      "setable": true,
+      "uiComponent": "picker",
+      "values": [
+        {
+          "id": "heat",
+          "title": {
+            "en": "Heat",
+            "no": "Varme"
+          }
+        },
+        {
+          "id": "home",
+          "title": {
+            "en": "Home",
+            "no": "Hjemme"
+          }
+        },
+        {
+          "id": "away",
+          "title": {
+            "en": "Away",
+            "no": "Borte"
+          }
+        },
+        {
+          "id": "auto",
+          "title": {
+            "en": "Auto (week program)",
+            "no": "Auto (ukeprogram)"
+          }
+        }
+      ]
+    }
+  }
+}

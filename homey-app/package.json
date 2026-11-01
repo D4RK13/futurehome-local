@@ -1,0 +1,18 @@
+{
+  "name": "com.github.d4rk13.futurehomelocal",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Local control of Futurehome Zigbee devices for Homey Pro, with no Futurehome hub, cloud or subscription",
+  "main": "app.js",
+  "scripts": {
+    "test": "node --test \"test/**/*.test.js\"",
+    "validate": "homey app validate --level publish"
+  },
+  "dependencies": {
+    "homey-zigbeedriver": "2.3.0",
+    "zigbee-clusters": "3.9.2"
+  },
+  "devDependencies": {
+    "@types/homey": "npm:homey-apps-sdk-v3-types@1.6.7"
+  }
+}

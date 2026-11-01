@@ -1,0 +1,69 @@
+{
+  "name": {
+    "en": "Futurehome Smart Thermostat",
+    "no": "Futurehome Smart Termostat"
+  },
+  "class": "thermostat",
+  "capabilities": [
+    "onoff",
+    "target_temperature",
+    "measure_temperature",
+    "measure_temperature.floor",
+    "futurehome_heating",
+    "meter_power",
+    "futurehome_thermostat_mode",
+    "futurehome_child_lock"
+  ],
+  "capabilitiesOptions": {
+    "target_temperature": {
+      "min": 5,
+      "max": 35,
+      "step": 1
+    },
+    "measure_temperature.floor": {
+      "title": {
+        "en": "Floor temperature",
+        "no": "Gulvtemperatur"
+      }
+    }
+  },
+  "platforms": [
+    "local"
+  ],
+  "connectivity": [
+    "zigbee"
+  ],
+  "images": {
+    "small": "{{driverAssetsPath}}/images/small.png",
+    "large": "{{driverAssetsPath}}/images/large.png",
+    "xlarge": "{{driverAssetsPath}}/images/xlarge.png"
+  },
+  "zigbee": {
+    "manufacturerName": [
+      "_TZE200_e5hpkc6d",
+      "_TZE204_e5hpkc6d",
+      "_TZE200_4hbx5cvx"
+    ],
+    "productId": [
+      "TS0601"
+    ],
+    "endpoints": {
+      "1": {
+        "clusters": [
+          0,
+          4,
+          5,
+          61184
+        ],
+        "bindings": []
+      }
+    },
+    "learnmode": {
+      "image": "/drivers/futurehome-thermostat/assets/learnmode.svg",
+      "instruction": {
+        "en": "1. Hold the minus button (−) on the thermostat for 8 seconds.\n2. Let go when the Zigbee icon flashes on the display.\n3. Wait here while Homey finds the thermostat.\n\nWas it set up with another hub before? Reset it first: hold + and − for 5 seconds, press ⋯ until setting 13, choose == and wait 5 seconds.",
+        "no": "1. Hold minusknappen (−) på termostaten inne i 8 sekunder.\n2. Slipp når Zigbee-ikonet blinker i displayet.\n3. Vent her mens Homey finner termostaten.\n\nVar den satt opp med en annen hub før? Tilbakestill den først: hold + og − inne i 5 sekunder, trykk ⋯ til innstilling 13, velg == og vent 5 sekunder."
+      }
+    }
+  }
+}

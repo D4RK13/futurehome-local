@@ -1,0 +1,24 @@
+{
+  "unknown": "Unknown",
+  "errors": {
+    "write_not_approved": "Control from Homey is not turned on yet. The app only reads this device for now.",
+    "no_tuya_cluster": "The thermostat does not offer the Tuya cluster. Remove it from Homey and add it again.",
+    "no_han_endpoint": "The HAN Sensor's meter values were not found (endpoint 2).",
+    "han_no_answer": "The HAN Sensor does not answer."
+  },
+  "thermostat": {
+    "sensor_type": {
+      "room": "Room sensor",
+      "floor": "Floor sensor",
+      "max_guard": "Max guard (room sensor with floor limit)"
+    }
+  },
+  "han": {
+    "meter_type": {
+      "norwegian_han": "Norwegian HAN",
+      "norwegian_han_extra_load": "Norwegian HAN, extra load",
+      "aidon": "Aidon",
+      "kaifa_kamstrup": "Kaifa and Kamstrup"
+    }
+  }
+}

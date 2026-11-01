@@ -1,0 +1,6 @@
+{
+  "0.1.0": {
+    "en": "First version: Futurehome Smart Thermostat and HAN Sensor drivers that only read the devices. Control from Homey is not turned on yet.",
+    "no": "Første versjon: drivere for Futurehome Smart Termostat og HAN-sensor som bare leser fra enhetene. Styring fra Homey er ikke slått på ennå."
+  }
+}

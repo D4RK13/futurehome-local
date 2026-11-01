@@ -1,0 +1,24 @@
+[
+  {
+    "type": "group",
+    "label": {
+      "en": "Meter",
+      "no": "Måler"
+    },
+    "children": [
+      {
+        "id": "meter_type",
+        "type": "label",
+        "label": {
+          "en": "Meter type",
+          "no": "Målertype"
+        },
+        "hint": {
+          "en": "The kind of electricity meter the sensor is set up for. It decides how the current is read. Read only.",
+          "no": "Hvilken type strømmåler sensoren er satt opp for. Den bestemmer hvordan strømmen leses. Kan bare leses."
+        },
+        "value": "–"
+      }
+    ]
+  }
+]
