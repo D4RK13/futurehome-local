@@ -1,0 +1,14 @@
+{
+  "source": "Homey Developer Tools, Zigbee nodes table (screenshot from Sondre)",
+  "date": "2026-11-01",
+  "device": "Futurehome Smart Thermostat PR (Co020, white), thermostat A",
+  "pairedAs": "Homey's own unknown Zigbee device (\"Zigbee Device\"), no app",
+  "ieeeAddress": "masked",
+  "networkAddress": "masked",
+  "type": "router",
+  "receiveWhenIdle": true,
+  "manufacturerName": "_TZE200_e5hpkc6d",
+  "modelId": "TS0601",
+  "route": "0 -> 1 (direct to the Homey)",
+  "interview": "not yet"
+}
