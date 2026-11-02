@@ -104,7 +104,11 @@ class FuturehomeThermostatDevice extends FuturehomeDevice {
 
   async sendDatapoint(dp, type, raw) {
     this.sequence = ((this.sequence || 0) + 1) % 0x10000;
-    await this.tuya.dataRequest({ seq: this.sequence, payload: encodeDatapoint(dp, type, raw) }, { waitForResponse: false });
+    // As Zigbee2MQTT: no default response; the thermostat confirms with a datapoint report.
+    await this.tuya.dataRequest(
+      { seq: this.sequence, payload: encodeDatapoint(dp, type, raw) },
+      { waitForResponse: false, disableDefaultResponse: true },
+    );
   }
 
   async onSettings({ newSettings, changedKeys }) {
@@ -138,7 +142,7 @@ class FuturehomeThermostatDevice extends FuturehomeDevice {
       return;
     }
     const payload = timeSyncPayload(Date.now(), this.homey.clock.getTimezone());
-    await this.tuya.timeSync({ payload }, { waitForResponse: false });
+    await this.tuya.timeSync({ payload }, { waitForResponse: false, disableDefaultResponse: true });
   }
 
   async onValueChanged(id, value) {

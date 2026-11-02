@@ -197,6 +197,11 @@ test('an approved write sends exactly that datapoint, and other writes stay refu
   assert.equal(writes.length, 1);
   assert.equal(writes[0].frame.data.readUInt16LE(0) > 0, true);
   assert.deepEqual(parseDatapoints(writes[0].frame.data.subarray(2)), [{ dp: 16, type: 'value', value: 25 }]);
+  // Same frame as Zigbee2MQTT sends: cluster specific, to the device, no default response wanted.
+  const { frameControl } = writes[0].frame;
+  assert.equal(frameControl.clusterSpecific, true);
+  assert.equal(frameControl.directionToClient, false);
+  assert.equal(frameControl.disableDefaultResponse, true);
 });
 
 test('an approved target temperature outside 5–35 °C is refused before sending', async () => {
