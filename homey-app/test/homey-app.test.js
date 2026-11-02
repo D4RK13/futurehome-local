@@ -73,6 +73,15 @@ test('safety: approved writes have a date and never include the protected values
   }
 });
 
+test('0.2.0 approves exactly the eight thermostat writes Sondre approved on 2026-11-02, and nothing on the HAN Sensor', () => {
+  assert.deepEqual(Object.keys(APPROVED_WRITES.thermostat).sort(), [
+    'futurehome_child_lock', 'futurehome_thermostat_mode', 'hysteresis', 'onoff',
+    'open_window_detection', 'target_temperature', 'temperature_calibration', 'time_sync',
+  ]);
+  assert.ok(Object.values(APPROVED_WRITES.thermostat).every((date) => date === '2026-11-02'));
+  assert.deepEqual(APPROVED_WRITES.han, {});
+});
+
 test('Zigbee drivers use Homey\'s own pairing: no custom views, no bind requests', () => {
   for (const driverId of DRIVERS) {
     const driver = readJson(`drivers/${driverId}/driver.compose.json`);

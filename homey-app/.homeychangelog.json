@@ -2,5 +2,9 @@
   "0.1.0": {
     "en": "First version: Futurehome Smart Thermostat and HAN Sensor drivers that only read the devices. Control from Homey is not turned on yet.",
     "no": "Første versjon: drivere for Futurehome Smart Termostat og HAN-sensor som bare leser fra enhetene. Styring fra Homey er ikke slått på ennå."
+  },
+  "0.2.0": {
+    "en": "Control the thermostat from Homey: temperature, on/off, mode, child lock, open window detection, hysteresis and calibration. The thermostat's clock is set by Homey. The floor protection can still only be set on the thermostat.",
+    "no": "Styr termostaten fra Homey: temperatur, av/på, modus, barnesikring, åpent vindu-funksjon, hysterese og kalibrering. Homey stiller klokka på termostaten. Gulvvernet kan fortsatt bare stilles på termostaten."
   }
 }

@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.2.0
+
+- Control the Futurehome Smart Thermostat from Homey: target temperature
+  (5–35 °C), on/off, thermostat mode, child lock, open window detection,
+  hysteresis and temperature calibration, from the Homey app, Flows and the
+  device settings.
+- Homey answers the thermostat's request for the time, so its clock is right.
+- The sensor type and floor limit (the floor protection) can still only be
+  set on the thermostat itself.
+- The HAN Sensor still only reads.
+
 ## 0.1.0
 
 - First version, not tried on real devices yet.

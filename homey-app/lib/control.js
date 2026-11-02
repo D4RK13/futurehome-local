@@ -15,7 +15,17 @@
  * sensor type and floor limit (max guard), and the HAN Sensor's meter type.
  */
 const APPROVED_WRITES = Object.freeze({
-  thermostat: Object.freeze({}),
+  // Sondre approved all eight on 2026-11-02, after the read test on thermostat A.
+  thermostat: Object.freeze({
+    target_temperature: '2026-11-02',
+    onoff: '2026-11-02',
+    futurehome_thermostat_mode: '2026-11-02',
+    futurehome_child_lock: '2026-11-02',
+    open_window_detection: '2026-11-02',
+    hysteresis: '2026-11-02',
+    temperature_calibration: '2026-11-02',
+    time_sync: '2026-11-02',
+  }),
   han: Object.freeze({}),
 });
 

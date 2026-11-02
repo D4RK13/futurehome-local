@@ -3,15 +3,14 @@
 A Homey Pro app for Futurehome devices. The devices run directly on Homey's
 Zigbee, with no Futurehome hub, cloud, app or subscription.
 
-**Status:** version 0.1.0, not tried on real devices yet. The app only
-**reads** the devices for now; control from Homey comes later, one function
-at a time.
+**Status:** version 0.2.0. The thermostat can be controlled from Homey;
+the HAN Sensor is read only. Tested on one thermostat so far.
 
 ## Supported devices
 
 | Device | What the app shows |
 |---|---|
-| Futurehome Smart Thermostat (Co020, Zigbee) | On/off, target, room and floor temperature, heating on/off, energy (kWh), thermostat mode, child lock. Settings: open window detection, hysteresis, temperature calibration; sensor type and floor limit (read only). Flow cards for mode, heating and child lock. |
+| Futurehome Smart Thermostat (Co020, Zigbee) | Shows on/off, target, room and floor temperature, heating on/off, energy (kWh), thermostat mode and child lock. On/off, target temperature, mode and child lock can be changed from Homey. Settings: open window detection, hysteresis, temperature calibration; sensor type and floor limit are shown but can only be set on the thermostat (floor protection). Flow cards for mode, heating and child lock. Homey keeps the thermostat's clock right. |
 | Futurehome HAN Sensor (GH201E, Zigbee) | Power, imported and exported energy, reactive power, voltage and current per phase, meter type. Can be the main meter in Homey Energy. |
 
 ## Adding a device

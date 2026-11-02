@@ -15,6 +15,9 @@ const manifest = require('../drivers/futurehome-thermostat/driver.compose.json')
 
 const BASIC = { 4: '_TZE200_e5hpkc6d', 5: 'TS0601', 0: 3, 1: 65, 7: 1 };
 
+/** No writes approved: how the app behaved in 0.1.0, and for any write not on the list. */
+const NOTHING_APPROVED = { thermostat: {}, han: {} };
+
 /** Everything the thermostat reported in one go, as a real one does after a query. */
 const FULL_REPORT = [
   { dp: 1, type: 'bool', value: true },
@@ -159,7 +162,7 @@ test('a thermostat without the Tuya cluster is shown as unavailable with a reaso
 // Safety: nothing may change the thermostat until Sondre approves that kind of write.
 
 test('without approval, a change in the Homey app is refused and nothing is sent', async () => {
-  const { device, node } = await createThermostat();
+  const { device, node } = await createThermostat({ approvedWrites: NOTHING_APPROVED });
   await report(device, node, FULL_REPORT);
   node.sent = [];
   for (const [id, value] of [['onoff', false], ['target_temperature', 25], ['futurehome_thermostat_mode', 'away'], ['futurehome_child_lock', true]]) {
@@ -170,7 +173,7 @@ test('without approval, a change in the Homey app is refused and nothing is sent
 });
 
 test('without approval, changed settings are refused and stay as they were', async () => {
-  const { device, node } = await createThermostat();
+  const { device, node } = await createThermostat({ approvedWrites: NOTHING_APPROVED });
   await report(device, node, FULL_REPORT);
   node.sent = [];
   await assert.rejects(device.changeSettings({ hysteresis: 4 }), { name: 'WriteNotApprovedError' });
@@ -179,7 +182,7 @@ test('without approval, changed settings are refused and stay as they were', asy
 });
 
 test('without approval, the time request is not answered', async () => {
-  const { device, node } = await createThermostat();
+  const { device, node } = await createThermostat({ approvedWrites: NOTHING_APPROVED });
   node.sent = [];
   await node.requestTime();
   await device.whenIdle();
@@ -234,7 +237,7 @@ test('an approved time sync answers with the time counted from 2000', async () =
 test('Flow cards: conditions read the device, actions go through the same approval', async () => {
   const driver = new ThermostatDriver();
   await driver.onInit();
-  const { device, node } = await createThermostat();
+  const { device, node } = await createThermostat({ approvedWrites: NOTHING_APPROVED });
   await report(device, node, FULL_REPORT);
   const card = (kind, id) => driver.homey.cards[`${kind}:${id}`];
 
@@ -250,4 +253,66 @@ test('Flow cards: conditions read the device, actions go through the same approv
   await assert.rejects(card('action', 'set_open_window_detection').runListener({ device, state: 'off' }), { name: 'WriteNotApprovedError' });
   assert.deepEqual(node.sent, []);
   assert.equal(device.getSetting('open_window_detection'), true);
+});
+
+// Version 0.2.0: what Sondre approved on 2026-11-02 (lib/control.js).
+
+/** The Tuya datapoints the app sent, in order, each as [dp, value]. */
+const sentDatapoints = (node) => node.tuyaWrites()
+  .flatMap(({ frame }) => parseDatapoints(frame.data.subarray(2)).map(({ dp, value }) => [dp, value]));
+
+test('with the approved list, every change in the Homey app reaches the thermostat', async () => {
+  const { device, node } = await createThermostat();
+  await report(device, node, FULL_REPORT);
+  node.sent = [];
+  await device.triggerCapability('target_temperature', 23);
+  await device.triggerCapability('onoff', false);
+  await device.triggerCapability('futurehome_thermostat_mode', 'away');
+  await device.triggerCapability('futurehome_child_lock', true);
+  await device.changeSettings({ open_window_detection: false, hysteresis: 3, temperature_calibration: 1 });
+  assert.deepEqual(sentDatapoints(node), [
+    [16, 23], [1, false], [2, 2], [30, true],
+    [106, false], [103, 3], [28, 1],
+  ]);
+  assert.deepEqual(device.errors, []);
+});
+
+test('with the approved list, the Flow actions reach the thermostat too', async () => {
+  const driver = new ThermostatDriver();
+  await driver.onInit();
+  const { device, node } = await createThermostat();
+  await report(device, node, FULL_REPORT);
+  const action = (id) => driver.homey.cards[`action:${id}`];
+  node.sent = [];
+  await action('set_thermostat_mode').runListener({ device, mode: 'home' });
+  await action('set_child_lock').runListener({ device, state: 'off' });
+  await action('set_open_window_detection').runListener({ device, state: 'off' });
+  assert.deepEqual(sentDatapoints(node), [[2, 1], [30, false], [106, false]]);
+  assert.equal(device.getSetting('open_window_detection'), false);
+});
+
+test('with the approved list, the time request is answered', async () => {
+  const { device, node } = await createThermostat();
+  node.sent = [];
+  await node.requestTime();
+  await device.whenIdle();
+  assert.equal(node.writesSent().filter(({ frame }) => frame.cmdId === 0x24).length, 1);
+});
+
+test('the floor protection stays out of reach even with the approved list', async () => {
+  const { device, node } = await createThermostat();
+  await report(device, node, FULL_REPORT);
+  node.sent = [];
+  // Homey shows these as text only; even a forced change sends nothing.
+  await device.onSettings({ newSettings: { sensor_type: 'Floor sensor', max_guard_temperature: '40' }, changedKeys: ['sensor_type', 'max_guard_temperature'] });
+  await assert.rejects(device.setSettingFromFlow('max_guard_temperature', 40), /cannot be changed/);
+  assert.deepEqual(node.sent, []);
+});
+
+test('a value outside the setting range is refused before sending, even when approved', async () => {
+  const { device, node } = await createThermostat();
+  node.sent = [];
+  await assert.rejects(device.changeSettings({ hysteresis: 12 }), /between 1 and 9/);
+  await assert.rejects(device.changeSettings({ temperature_calibration: -10 }), /between -9 and 9/);
+  assert.deepEqual(node.tuyaWrites(), []);
 });

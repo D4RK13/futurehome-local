@@ -1,6 +1,6 @@
 {
   "name": "com.github.d4rk13.futurehomelocal",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
   "description": "Local control of Futurehome Zigbee devices for Homey Pro, with no Futurehome hub, cloud or subscription",
   "main": "app.js",
